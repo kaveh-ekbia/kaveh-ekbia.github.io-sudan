@@ -1,0 +1,779 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-search.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="js/leaflet-search.js"></script>
+        <script src="data/Locality_Poly_Mar20_0.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+
+            if (e.target.feature.geometry.type === 'LineString') {
+              highlightLayer.setStyle({
+                color: '#ffff00',
+              });
+            } else {
+              highlightLayer.setStyle({
+                fillColor: '#ffff00',
+                fillOpacity: 1
+              });
+            }
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[8.27879025572496,17.396382363711666],[23.505410375275073,42.99966212028852]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_Locality_Poly_Mar20_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    for (i in e.target._eventParents) {
+                        e.target._eventParents[i].resetStyle(e.target);
+                    }
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['State_En'] !== null ? autolinker.link(feature.properties['State_En'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Loc_En'] !== null ? autolinker.link(feature.properties['Loc_En'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Language'] !== null ? autolinker.link(feature.properties['Language'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Locality_Poly_Mar20_0_0(feature) {
+            switch(String(feature.properties['Language'])) {
+                case 'Arabic':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,93,153,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Aka':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,188,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berta':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(86,235,53,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berta, Kelo':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,190,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berta, Uduk, Komo':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(185,142,239,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,160,135,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Afitti':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(85,240,98,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Dair, Tagoi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(17,238,161,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, El Hugeirat':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(61,192,201,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Ghulfan, Kadaru, Delen, Garko, Nyiman, Katla, Tima, Tulishi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(145,35,219,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Heiban, Tima':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(35,240,223,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Kadaru':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,65,136,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Temain, Tegali':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(72,68,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Tima':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(89,100,201,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Berti, Wali, Keiga Jirru, Shatt, Logorif, Katcha-Kadugli-Miri, Kanga, Krongo, Tumtum, Tima':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(90,22,236,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,137,221,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Berti, Zaghawa':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(211,132,223,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Berti, Zaghawa, Midobi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(147,128,230,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Dar Fur Daju':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,116,238,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Maba, Masalit, Dar Fur Daju':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,51,77,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Masalit':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(23,218,69,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Masalit, Bokoruge':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(171,57,212,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Sokoro':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(24,120,210,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Tama':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(39,229,134,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Zaghawa':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(239,112,115,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Fur, Mimi, Zaghawa, Teda':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(207,76,205,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Gumuz':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(56,117,216,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Ingessana':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(105,234,36,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Midobi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(31,224,102,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Arabic, Mimi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(137,213,65,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Berti':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,224,106,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fur, Mimi, Gula, Kresh':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(154,213,60,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Fur, Mimi, Zaghawa':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(72,197,228,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gbaya, Fur, Mimi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(102,225,95,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Gbaya, Fur, Mimi, Ngambay':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,189,108,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hausa':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(218,73,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Hausa, Midobi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(232,59,111,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mimi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(47,207,172,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mimi, Berti':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(224,157,81,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mimi, Berti, Lafofa':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(185,217,80,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Mimi, Berti, Talodi':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,132,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Nubian':
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,55,35,1.0)',
+                interactive: true,
+            }
+                    break;
+                default:
+                    return {
+                pane: 'pane_Locality_Poly_Mar20_0',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Locality_Poly_Mar20_0');
+        map.getPane('pane_Locality_Poly_Mar20_0').style.zIndex = 400;
+        map.getPane('pane_Locality_Poly_Mar20_0').style['mix-blend-mode'] = 'normal';
+        var layer_Locality_Poly_Mar20_0 = new L.geoJson(json_Locality_Poly_Mar20_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Locality_Poly_Mar20_0',
+            layerName: 'layer_Locality_Poly_Mar20_0',
+            pane: 'pane_Locality_Poly_Mar20_0',
+            onEachFeature: pop_Locality_Poly_Mar20_0,
+            style: style_Locality_Poly_Mar20_0_0,
+        });
+        bounds_group.addLayer(layer_Locality_Poly_Mar20_0);
+        map.addLayer(layer_Locality_Poly_Mar20_0);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'Locality_Poly_Mar20<br /><table><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_Arabic0.png" /></td><td>Arabic</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicAka1.png" /></td><td>Arabic, Aka</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBerta2.png" /></td><td>Arabic, Berta</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertaKelo3.png" /></td><td>Arabic, Berta, Kelo</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertaUdukKomo4.png" /></td><td>Arabic, Berta, Uduk, Komo</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBerti5.png" /></td><td>Arabic, Berti</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiAfitti6.png" /></td><td>Arabic, Berti, Afitti</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiDairTagoi7.png" /></td><td>Arabic, Berti, Dair, Tagoi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiElHugeirat8.png" /></td><td>Arabic, Berti, El Hugeirat</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiGhulfanKadaruDelenGarkoNyimanKatlaTimaTulishi9.png" /></td><td>Arabic, Berti, Ghulfan, Kadaru, Delen, Garko, Nyiman, Katla, Tima, Tulishi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiHeibanTima10.png" /></td><td>Arabic, Berti, Heiban, Tima</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiKadaru11.png" /></td><td>Arabic, Berti, Kadaru</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiTemainTegali12.png" /></td><td>Arabic, Berti, Temain, Tegali</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiTima13.png" /></td><td>Arabic, Berti, Tima</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicBertiWaliKeigaJirruShattLogorifKatchaKadugliMiriKangaKrongoTumtumTima14.png" /></td><td>Arabic, Berti, Wali, Keiga Jirru, Shatt, Logorif, Katcha-Kadugli-Miri, Kanga, Krongo, Tumtum, Tima</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimi15.png" /></td><td>Arabic, Fur, Mimi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiBertiZaghawa16.png" /></td><td>Arabic, Fur, Mimi, Berti, Zaghawa</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiBertiZaghawaMidobi17.png" /></td><td>Arabic, Fur, Mimi, Berti, Zaghawa, Midobi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiDarFurDaju18.png" /></td><td>Arabic, Fur, Mimi, Dar Fur Daju</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiMabaMasalitDarFurDaju19.png" /></td><td>Arabic, Fur, Mimi, Maba, Masalit, Dar Fur Daju</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiMasalit20.png" /></td><td>Arabic, Fur, Mimi, Masalit</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiMasalitBokoruge21.png" /></td><td>Arabic, Fur, Mimi, Masalit, Bokoruge</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiSokoro22.png" /></td><td>Arabic, Fur, Mimi, Sokoro</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiTama23.png" /></td><td>Arabic, Fur, Mimi, Tama</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiZaghawa24.png" /></td><td>Arabic, Fur, Mimi, Zaghawa</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicFurMimiZaghawaTeda25.png" /></td><td>Arabic, Fur, Mimi, Zaghawa, Teda</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicGumuz26.png" /></td><td>Arabic, Gumuz</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicIngessana27.png" /></td><td>Arabic, Ingessana</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicMidobi28.png" /></td><td>Arabic, Midobi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_ArabicMimi29.png" /></td><td>Arabic, Mimi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_Berti30.png" /></td><td>Berti</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_FurMimiGulaKresh31.png" /></td><td>Fur, Mimi, Gula, Kresh</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_FurMimiZaghawa32.png" /></td><td>Fur, Mimi, Zaghawa</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_GbayaFurMimi33.png" /></td><td>Gbaya, Fur, Mimi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_GbayaFurMimiNgambay34.png" /></td><td>Gbaya, Fur, Mimi, Ngambay</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_Hausa35.png" /></td><td>Hausa</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_HausaMidobi36.png" /></td><td>Hausa, Midobi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_Mimi37.png" /></td><td>Mimi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_MimiBerti38.png" /></td><td>Mimi, Berti</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_MimiBertiLafofa39.png" /></td><td>Mimi, Berti, Lafofa</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_MimiBertiTalodi40.png" /></td><td>Mimi, Berti, Talodi</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_Nubian41.png" /></td><td>Nubian</td></tr><tr><td style="text-align: center;"><img src="legend/Locality_Poly_Mar20_0_42.png" /></td><td></td></tr></table>': layer_Locality_Poly_Mar20_0,}).addTo(map);
+        setBounds();
+        map.addControl(new L.Control.Search({
+            layer: layer_Locality_Poly_Mar20_0,
+            initial: false,
+            hideMarkerOnCollapse: true,
+            propertyName: 'Language'}));
+        document.getElementsByClassName('search-button')[0].className +=
+         ' fa fa-binoculars';
+        </script>
+    </body>
+</html>
